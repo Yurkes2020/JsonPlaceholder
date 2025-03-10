@@ -52,7 +52,7 @@ const renderUsers = async () => {
 		return;
 	}
 	addUsers(users);
-	console.log(users);
+
 }
 
 renderUsers()
