@@ -1,4 +1,4 @@
-import {getComments} from './fetchData.js';
+import {getComments} from '../fetchData.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
@@ -6,7 +6,7 @@ const postId = urlParams.get('id');
 let back = document.getElementById('back');
 let main = document.getElementsByTagName('main')[0];
 
-back.href = './index.html';
+back.href = '../index.html';
 
 let posts = JSON.parse(localStorage.getItem('posts')) ;
 let postCurrent = posts.find((post) => post.id === Number(postId) );

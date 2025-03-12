@@ -1,4 +1,4 @@
-import {getPost} from './fetchData.js';
+import {getPost} from '../fetchData.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('id');
@@ -59,7 +59,7 @@ const addPosts = (posts) => {
 
 		li.textContent = post.title;
 		link.innerText = 'See comments';
-		link.href = `post-details.html?id=${post.id}`;
+		link.href = `../post/post-details.html?id=${post.id}`;
 
 		li.append(link);
 		return li;

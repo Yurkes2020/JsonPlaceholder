@@ -14,7 +14,7 @@ const addUsers = (users) => {
 
 		name.textContent = user.name;
 		link.textContent = 'details'
-		link.href = `user-details.html?id=${user.id}`
+		link.href = `user/user-details.html?id=${user.id}`
 
 		block.append( name, link);
 		main.appendChild(block);
