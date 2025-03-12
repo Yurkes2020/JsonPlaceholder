@@ -5,15 +5,132 @@
 	list-style-type: none;
 }
 
-#wrapper {
+.user-info {
+	width: 80%;
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 20px;
+	background: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.user-info h2 {
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.user-info p {
+	color: #555;
+	margin: 5px 0;
+}
+
+.user-info ul {
+	padding: 0;
+	margin: 10px 0;
+}
+
+.user-info ul li {
+	background: #e3e3e3;
+	padding: 5px;
+	margin: 5px 0;
+	border-radius: 5px;
+}
+
+#getPosts {
+	display: block;
+	width: 90%;
+	margin: 20px auto;
+	padding: 10px;
+	background: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#getPosts:hover {
+	background: #0056b3;
+}
+
+.posts-container {
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	
+}
+
+.posts-container ul {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 20px;
+}
+
+.posts-container li {
+	margin: 10px 0;
+	padding: 15px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.posts-container a {
+	margin-top: auto ;
+	display: block;
+	text-decoration: none;
+	color: #007bff;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.posts-container a:hover {
+color: #0056b3;
+}
+
+button {
+	width: 90%;
+	max-width: 600px;
+	padding: 15px;
+	background: #28a745;
+	color: white;
+	text-align: center;
+	font-size: 18px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	transition: background 0.3s;
 }
 
 #back {
 	width: 200px;
-	border: 1px solid black;
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	border: 1px solid #007bff;
+	border-radius: 5px;
 	text-align: center;
 	text-decoration: none;
 	display: block;
 	margin: 20px auto;
+	font-size: 16px;
+	font-weight: bold;
+	transition: all 0.3s ease;
+}
+
+
+#back:hover {
+	background-color: #0056b3;
+	border-color: #0056b3;
+	transform: scale(1.05);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

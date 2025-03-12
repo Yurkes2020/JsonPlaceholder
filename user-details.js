@@ -6,71 +6,70 @@ const userId = urlParams.get('id');
 const data = JSON.parse(localStorage.getItem('users'))
 const user = data.find((user) => user.id === Number(userId) );
 
-let wrapper = document.getElementById('wrapper');
+let main = document.getElementsByTagName('main')[0];
 
-const renderUser = ({company, address, email, id, name, phone, username, website}) => {
+const renderUser = ({company, address, email, name, phone, username, website}) => {
+
 	let div = document.createElement("div");
-	let h2 = document.createElement("h2");
-	let phoneUser = document.createElement("p");
-	let emailUser = document.createElement("p");
-	let userName = document.createElement("p");
-	let webSiteName = document.createElement("p");
-	let listAddress = document.createElement("ul");
-	let listCompany = document.createElement("ul");
-	let button = document.createElement("button");
+	div.className = "user-info";
 
-	h2.textContent = name;
-	phoneUser.textContent = `Telephone: ${phone}`;
-	emailUser.textContent = `Email: ${email}`
-	userName.textContent = `Username: ${username}`;
-	webSiteName.textContent = `Website: ${website}`;
-	button.textContent = 'Post of current user';
-	button.setAttribute("id", 'getPosts');
+	div.innerHTML = `
+        <h2>${name}</h2>
+        <p><strong>Username:</strong> ${username}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Telephone:</strong> ${phone}</p>
+        <p><strong>Website:</strong> ${website}</p>
+        
+        <h3>Address</h3>
+        <ul>
+            <li>${address.city}</li>
+            <li>${address.geo.lat}, ${address.geo.lng}</li>
+            <li>${address.street}</li>
+            <li>${address.suite}</li>
+            <li>${address.zipcode}</li>
+        </ul>
+        
+        <h3>Company</h3>
+        <ul>
+            <li>${company.bs}</li>
+            <li>${company.catchPhrase}</li>
+            <li>${company.name}</li>
+        </ul>
+        
+        <button id="getPosts">Post of current user</button>
+    `;
 
-	const {city, geo, street, suite, zipcode} = address;
-
-	listAddress.innerHTML = `
-		<li>${city}</li>
-		<li>${geo.lat}, ${geo.lng}</li>
-		<li>${street}</li>
-		<li>${suite}</li>
-		<li>${zipcode}</li>`;
-
-	const {bs, catchPhrase, name: nameCompany} = company;
-
-	listCompany.innerHTML = `
-		<li>${bs}</li>
-		<li>${catchPhrase}</li>
-		<li>${nameCompany}</li>`;
-
-
-
-	div.append(h2, phoneUser, emailUser, userName, webSiteName, listAddress, listCompany, button);
-	wrapper.append(div);
-
+	main.append(div);
 }
 
 renderUser(user);
 
 const addPosts = (posts) => {
+
 	let div = document.createElement("div");
 	let ul = document.createElement("ul");
-	wrapper.append(div);
-	div.append(ul);
 
-	for (let post of posts) {
+	div.className = "posts-container";
+	div.append(ul);
+	main.append(div);
+
+	const postItems = posts.map(post => {
 		let li = document.createElement("li");
 		let link = document.createElement("a");
-		li.textContent = post.title;
-		link.textContent = 'link';
-		link.href = `post-details.html?id=${post.id}`;
-		li.append(link);
-		ul.append(li);
-	}
 
-}
+		li.textContent = post.title;
+		link.innerText = 'See comments';
+		link.href = `post-details.html?id=${post.id}`;
+
+		li.append(link);
+		return li;
+	});
+
+	ul.append(...postItems);
+};
 
 const renderPosts = async (userId) => {
+
 	let posts = await getPost(userId);
 
 	localStorage.setItem('posts', JSON.stringify(posts));
@@ -80,7 +79,6 @@ const renderPosts = async (userId) => {
 		return;
 	}
 	addPosts(posts);
-	console.log(posts);
 }
 
 let button = document.getElementById("getPosts");
